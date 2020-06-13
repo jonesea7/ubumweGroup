@@ -1,0 +1,1 @@
+web: gunicorn ubumwe.wsgi --log-file -
