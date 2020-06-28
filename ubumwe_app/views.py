@@ -21,13 +21,21 @@ class MemberDetailView(LoginRequiredMixin, DetailView):
 
 
 class ContributionsDashboardView(LoginRequiredMixin, View):
+
     def get(self, *args, **kwargs):
+        total_contributions = 0
         try:
             members = Member.objects.all()
+
+            for member in members:
+                total_contributions += member.get_total_saved()
+
+            # contributions = Contribution.objects.all()
             context = {
-                'members_object': members
+                'members_object': members,
+                'contribution_object': total_contributions,
             }
-            # print("****** objects: ", members[0].first_name)
+            print("****** total cont: ", total_contributions)
             return render(self.request, 'contributions_dashboard.html', context)
         except ObjectDoesNotExist:
             messages.error(self.request, "No members in this Kimina yet, please add members and try again.")

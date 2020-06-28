@@ -223,10 +223,10 @@
                 <!--Category & Title-->
                 <h5>
                     <strong>
-                        <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
+                        <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.first_name }} {{ item.last_name }}
                             {# <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>#}
                         </a>
-                        <span class="badge badge-pill primary-color">2</span>
+                        <span class="badge badge-pill primary-color">{{ item.inshuro }}</span>
                     </strong>
                 </h5>
                   <a href="" class="grey-text">
@@ -234,22 +234,9 @@
                   </a>
 
                 <h4 >
-                  <p class="lead">
-              {% if item.discount_price %}
-{#                  <span class="mr-1">#}
-{#                      <del>{{ item.price }}</del>#}
-{#                  </span> #}
-{#                  <span class="mr-1">#}
-{#                      Asigamye:#}
-{#                  </span>#}
-                  <span class="font-weight-bold blue-text ">Saved: {{ item.discount_price }}</span>
-              {% else %}
-{#                  <span class="mr-1">#}
-{#                      Asigamye:#}
-{#                  </span>#}
-                  <span class="font-weight-bold blue-text ">Saved: {{ item.price }}</span>
-              {% endif %}
-            </p>
+                    <p class="lead">
+                        <span class="font-weight-bold blue-text ">Saved: {{ item.get_total_saved }}</span>
+                    </p>
                 </h4>
 
               </div>

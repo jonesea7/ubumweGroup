@@ -21,32 +21,24 @@
                 <th scope="col">Amount Saved</th>
                 <th scope="col">Inguzanyo</th>
                 <th scope="col">Imigabane</th>
-                <th scope="col">Total</th>
+                <th scope="col">Balance</th>
               </tr>
             </thead>
             <tbody>
             {% for member in members_object.all  %}
+
               <tr>
                   <td scope="row">{{ forloop.counter }}</td>
                   <td>{{ member.first_name }} {{ member.last_name }}</td>
-                  <td>{{ member.get_total_saved }}</td>
-                  <td>{{ member.email }}</td>
+                  <td>{{ member.get_total_saved }} Frw</td>
+                  <td>0  Frw</td>
                   <td>
-                      <a href="#">
-                          <i class="fas fa-minus-circle mr-2"></i></a>
-                        {{ member.phone }}
-                      <a href="#"> <i class="fas fa-plus-circle ml-2"></i></a>
+
+                        {{ member.inshuro }}
                   </td>
                   <td>
-                    {% if order_item.item.discount_price %}
-                        ${{ order_item.get_total_item_price }}
-                        <span class="badge badge-secondary">Umwenda: {{ order_item.item.discount_price }}</span>
-                    {% else %}
-                        ${{ order_item.get_total_item_price }}
-                    {% endif %}
-                      <a style="color: #ff3d00;" href="#">
-                          <i class="fas fa-trash float-right"></i>
-                      </a>
+                        {{ member.get_total_saved }} Frw
+                        <span class="badge badge-secondary">Umwenda: {{0}}F</span>
                   </td>
               </tr>
                 {% empty %}
@@ -59,10 +51,13 @@
                     </td>
                 </tr>
             {% endfor %}
-            {% if object.get_total %}
                 <tr>
                     <td colspan="5"><b>Total Yose</b></td>
-                    <td> <b>{{ object.get_total }}</b> </td>
+                    {% if contribution_object %}
+                        <td> <b>{{ contribution_object }} Frw</b> </td>
+                    {% else %}
+                        <td> <b>0 Frw</b> </td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <td colspan="6">
@@ -70,7 +65,6 @@
 {#                        <a href="{% url 'ubumwe_app:checkout' %}" class="btn btn-warning float-right">Proceed to checkout</a>#}
                     </td>
                 </tr>
-            {% endif %}
             </tbody>
           </table>
 

@@ -22,12 +22,11 @@ LABEL_CHOICES = (
 
 
 class Contribution(models.Model):
-    member = models.ForeignKey("Member", on_delete=models.CASCADE)
     amount = models.IntegerField()
     date_contributed = models.DateTimeField()
 
     def __str__(self):
-        return f"Ya {self.member.first_name} - Yo kuri {self.date_contributed}"
+        return f"Yo kuri {self.date_contributed}"
 
 
 class Member(models.Model):
@@ -35,8 +34,9 @@ class Member(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField(blank=True)
     phone = PhoneNumberField(default='+12125552368')
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    contributions = models.ManyToManyField(Contribution, related_name="+")
+    inshuro = models.IntegerField(default=1)
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2, default='MB')
+    contributions = models.ManyToManyField(Contribution)
     # loans = models.ManyToManyField(Loan)
     member_image = models.ImageField(blank=True, default='default.png')
     slug = models.SlugField(unique=True, blank=True)
