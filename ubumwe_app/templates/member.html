@@ -11,15 +11,15 @@
       <div class="row wow fadeIn">
 
         <!--Grid column-->
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
 
-          <img src="{{ object.item_image.url }}" class="img-fluid" alt="">
+          <img style="border-radius: 50%" src="{{ member.member_image.url }}" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-md-6 mb-4">
+        <div class="col-md-8 mb-4">
 
           <!--Content-->
           <div class="p-4">
@@ -27,47 +27,29 @@
             <div class="mb-3">
                 <h5>
                   <strong>
-                    <span class="dark-grey-text">{{ item.title }}
-                      <span class="badge badge-pill {{ item.get_label_display }}-color" >New</span>
+                    Full Name: <span class="lead font-weight-bold">{{ member.get_full_name }}
+                      <span class="badge badge-pill {{ member.get_label_display }}-color" >New</span>
                     </span>
                   </strong>
                 </h5>
-              <span href="">
-                <span class="badge purple mr-1">{{ object.get_category_display }}</span>
+              <span href="" class="lead font-weight-normal">
+                Member category: <span class="badge purple mr-1">{{ object.get_category_display }}</span>
               </span>
-{#              <a href="">#}
-{#                <span class="badge blue mr-1">New</span>#}
-{#              </a>#}
-{#              <a href="">#}
-{#                <span class="badge red mr-1">Bestseller</span>#}
-{#              </a>#}
             </div>
 
-            <p class="lead">
-              {% if object.discount_price %}
-                  <span class="mr-1">
-                      <del>{{ object.price }}</del>
-                  </span>
-                  <span class="blue-text">{{ object.discount_price }}</span>
-              {% else %}
-                  <span class="blue-text">{{ object.price }}</span>
-              {% endif %}
-            </p>
+              <p class="lead">
+                  <span class="lead font-weight-normal">Inshuro: {{ member.inshuro }}</span>
+              </p>
+              <p class="lead font-weight-normal">Email: {{ member.email }}</p>
+              <p class="lead font-weight-normal">Phone: {{ member.phone }}</p>
 
-            <p class="lead font-weight-bold">Description</p>
 
             <p>{{ object.description }}</p>
 
-{#            <form class="d-flex justify-content-left">#}
-{#              <!-- Default input -->#}
-{#              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">#}
-{##}
-{#            </form>#}
-              <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" >Add to cart
-                  <i class="fas fa-shopping-cart ml-1"></i>
+              <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" >Contact <i class="fas fa-comments"></i>
               </a>
-              <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p" >Remove from cart
-                  <i class="fas fa-shopping-cart ml-1"></i>
+              <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p" >Delete member
+                  <i class="fas fa-trash"></i>
               </a>
 
           </div>
@@ -87,11 +69,9 @@
         <!--Grid column-->
         <div class="col-md-6 text-center">
 
-          <h4 class="my-4 h4">Additional information (coming soon...)</h4>
+          <h4 class="my-4 h4">More about the member {{ member.first_name }} </h4>
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-            voluptates,
-            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+          <p>Amakuru arambuye kuri {{ member.first_name }}. More content coming soon...</p>
 
         </div>
         <!--Grid column-->
@@ -99,35 +79,62 @@
       </div>
       <!--Grid row-->
 
-      <!--Grid row-->
-      <div class="row wow fadeIn">
 
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-12 mb-4">
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
+    <!--Main layout-->
+  <main>
+    <div class="container">
 
-        </div>
-        <!--Grid column-->
+        <div class="table-responsive text-nowrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Contribution date</th>
+                <th scope="col">Amount Saved</th>
+                <th scope="col">Ayo yasigayemo</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for contribution in member.contributions.all  %}
 
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
+              <tr>
+                  <td scope="row">{{ forloop.counter }}</td>
+                  <td>{{ contribution.date_contributed }}</td>
+                  <td>{{ contribution.amount }} Frw</td>
+                  <td>0  Frw</td>
+              </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">You cart is empty!</td>
+                </tr>
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
+            {% endfor %}
+                <tr>
+                    <td colspan="3" ><b>Total ya {{ member.first_name }}</b></td>
+                    {% if member.get_total_saved %}
+                        <td class="btn-primary"> <b>{{ member.get_total_saved }} Frw</b> </td>
+                    {% else %}
+                        <td class="btn-primary"> <b>0 Frw</b> </td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td colspan="5">
+{#                        <a href="#" class="btn btn-primary float-right ml-2">Print this table</a>#}
+{#                        <a href="{% url 'ubumwe_app:checkout' %}" class="btn btn-warning float-right">Proceed to checkout</a>#}
+                    </td>
+                </tr>
+            </tbody>
+          </table>
 
-        </div>
-        <!--Grid column-->
+</div>
 
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
+    </div>
+  </main>
+  <!--Main layout-->
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
 
-        </div>
-        <!--Grid column-->
 
-      </div>
-      <!--Grid row-->
 
     </div>
   </main>

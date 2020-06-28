@@ -50,6 +50,14 @@ class Member(models.Model):
             total += contrib.amount
         return total
 
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def get_absolute_url(self):
+        return reverse('ubumwe_app:member', kwargs={
+                'slug': self.slug
+            })
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.first_name)
         super(Member, self).save(*args, **kwargs)

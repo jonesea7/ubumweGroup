@@ -201,7 +201,7 @@
         <!--Grid row-->
         <div class="row wow fadeIn">
 
-            {% for item in object_list %}
+            {% for member in object_list %}
                 <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
@@ -209,9 +209,9 @@
 
               <!--Card image-->
               <div class="view overlay">
-                <img  src="{{ item.item_image.url }}" class="card-img-top"
+                <img  src="{{ member.member_image.url }}" class="card-img-top"
                   alt="">
-                <a href="{{ item.get_absolute_url }}">
+                <a href="{{ member.get_absolute_url }}">
                   <div class="mask rgba-white-slight"></div>
                 </a>
 
@@ -223,19 +223,19 @@
                 <!--Category & Title-->
                 <h5>
                     <strong>
-                        <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.first_name }} {{ item.last_name }}
-                            {# <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>#}
+                        <a href="{{ member.get_absolute_url }}" class="dark-grey-text">{{ member.first_name }} {{ member.last_name }}
+                            {# <span class="badge badge-pill {{ member.get_label_display }}-color">NEW</span>#}
                         </a>
-                        <span class="badge badge-pill primary-color">{{ item.inshuro }}</span>
+                        <span class="badge badge-pill primary-color">{{ member.inshuro }}</span>
                     </strong>
                 </h5>
                   <a href="" class="grey-text">
-                      <h5>{{ item.get_category_display }}</h5>
+                      <h5>{{ member.get_category_display }}</h5>
                   </a>
 
                 <h4 >
                     <p class="lead">
-                        <span class="font-weight-bold blue-text ">Saved: {{ item.get_total_saved }}</span>
+                        <span class="font-weight-bold blue-text ">Saved: {{ member.get_total_saved }}</span>
                     </p>
                 </h4>
 
