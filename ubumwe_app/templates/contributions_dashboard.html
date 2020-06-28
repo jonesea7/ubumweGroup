@@ -25,16 +25,17 @@
               </tr>
             </thead>
             <tbody>
-            {% for order_item in object.items.all %}
+            {% for member in members_object.all  %}
               <tr>
-                  <th scope="row">{{ forloop.counter }}</th>
-                  <td>{{ order_item.item.title }}</td>
-                  <td>{{ order_item.item.price }}</td>
-                  <td>{{ order_item.item.discount_price }}</td>
+                  <td scope="row">{{ forloop.counter }}</td>
+                  <td>{{ member.first_name }} {{ member.last_name }}</td>
+                  <td>{{ member.get_total_saved }}</td>
+                  <td>{{ member.email }}</td>
                   <td>
-                      <a href="{% url 'ubumwe_app:remove_single_item_from_cart' order_item.item.slug %}"> <i class="fas fa-minus-circle mr-2"></i></a>
-                        {{ order_item.quantity }}
-                      <a href="{% url 'ubumwe_app:add_to_cart' order_item.item.slug %}"> <i class="fas fa-plus-circle ml-2"></i></a>
+                      <a href="#">
+                          <i class="fas fa-minus-circle mr-2"></i></a>
+                        {{ member.phone }}
+                      <a href="#"> <i class="fas fa-plus-circle ml-2"></i></a>
                   </td>
                   <td>
                     {% if order_item.item.discount_price %}
@@ -43,7 +44,7 @@
                     {% else %}
                         ${{ order_item.get_total_item_price }}
                     {% endif %}
-                      <a style="color: #ff3d00;" href="{% url 'ubumwe_app:remove_from_cart' order_item.item.slug %}">
+                      <a style="color: #ff3d00;" href="#">
                           <i class="fas fa-trash float-right"></i>
                       </a>
                   </td>
@@ -54,7 +55,7 @@
                 </tr>
                 <tr>
                     <td colspan="5">
-                        <a href="{% url 'ubumwe_app:home' %}" class="btn btn-primary float-right ml-2">Continue shopping</a>
+                        <a href="#" class="btn btn-primary float-right ml-2">Continue shopping</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -65,7 +66,7 @@
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <a href="{% url 'ubumwe_app:home' %}" class="btn btn-primary float-right ml-2">Print this table</a>
+                        <a href="#" class="btn btn-primary float-right ml-2">Print this table</a>
 {#                        <a href="{% url 'ubumwe_app:checkout' %}" class="btn btn-warning float-right">Proceed to checkout</a>#}
                     </td>
                 </tr>

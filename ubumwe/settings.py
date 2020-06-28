@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'django_countries',
+    'phonenumber_field',
 
     'ubumwe_app',
 ]

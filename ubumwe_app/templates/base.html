@@ -1,5 +1,5 @@
 {% load static %}
-{% load cart_template_tags %}
+{#{% load cart_template_tags %}#}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,26 +70,11 @@
         <!-- Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-{#            <!-- Left -->#}
-{#            <ul class="navbar-nav mr-auto">#}
-{#                <li class="nav-item active">#}
-{#                    <a class="nav-link waves-effect" href="{% url 'ubumwe_app:home' %}">Home#}
-{#                        <span class="sr-only">(current)</span>#}
-{#                    </a>#}
-{#                </li>#}
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link waves-effect" href="/product" >Product</a>#}
-{#                </li>#}
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link waves-effect" href="{% url 'ubumwe_app:checkout' %}" >Checkout</a>#}
-{#                </li>#}
-{#            </ul>#}
-
             <!-- Right -->
             <ul class="navbar-nav ml-auto">
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="{% url 'ubumwe_app:order_summary' %}" class="nav-link border border-primary rounded waves-effect">
+                        <a href="{% url 'ubumwe_app:dashboard' %}" class="nav-link border border-primary rounded waves-effect">
 {#                            <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>#}
                             <i class="fas fa-table"></i>
                             <span class="clearfix d-sm-inline-block"> Dashboard </span>
