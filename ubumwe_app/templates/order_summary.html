@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Order Summary" %}{% endblock %}
+{% block head_title %}{% trans "Dashboard" %}{% endblock %}
 
 {% block content %}
 
@@ -12,15 +12,16 @@
     <div class="container">
 
         <div class="table-responsive text-nowrap">
-            <h2>Order Summary</h2>
+            <h2> Main Dashboard</h2>
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Item title</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total price</th>
+                <th scope="col">Name</th>
+                <th scope="col">Amount Saved</th>
+                <th scope="col">Inguzanyo</th>
+                <th scope="col">Imigabane</th>
+                <th scope="col">Total</th>
               </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                   <th scope="row">{{ forloop.counter }}</th>
                   <td>{{ order_item.item.title }}</td>
                   <td>{{ order_item.item.price }}</td>
+                  <td>{{ order_item.item.discount_price }}</td>
                   <td>
                       <a href="{% url 'ubumwe_app:remove_single_item_from_cart' order_item.item.slug %}"> <i class="fas fa-minus-circle mr-2"></i></a>
                         {{ order_item.quantity }}
@@ -36,8 +38,8 @@
                   </td>
                   <td>
                     {% if order_item.item.discount_price %}
-                        ${{ order_item.get_total_discount_item_price }}
-                        <span class="badge badge-primary">Saving {{ order_item.get_amount_saved_on_order }}</span>
+                        ${{ order_item.get_total_item_price }}
+                        <span class="badge badge-secondary">Umwenda: {{ order_item.item.discount_price }}</span>
                     {% else %}
                         ${{ order_item.get_total_item_price }}
                     {% endif %}
@@ -58,13 +60,13 @@
             {% endfor %}
             {% if object.get_total %}
                 <tr>
-                    <td colspan="4"><b>Order Total</b></td>
+                    <td colspan="5"><b>Total Yose</b></td>
                     <td> <b>{{ object.get_total }}</b> </td>
                 </tr>
                 <tr>
-                    <td colspan="5">
-                        <a href="{% url 'ubumwe_app:home' %}" class="btn btn-primary float-right ml-2">Continue shopping</a>
-                        <a href="{% url 'ubumwe_app:checkout' %}" class="btn btn-warning float-right">Proceed to checkout</a>
+                    <td colspan="6">
+                        <a href="{% url 'ubumwe_app:home' %}" class="btn btn-primary float-right ml-2">Print this table</a>
+{#                        <a href="{% url 'ubumwe_app:checkout' %}" class="btn btn-warning float-right">Proceed to checkout</a>#}
                     </td>
                 </tr>
             {% endif %}

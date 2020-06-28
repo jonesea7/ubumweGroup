@@ -90,15 +90,22 @@
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         <a href="{% url 'ubumwe_app:order_summary' %}" class="nav-link border border-primary rounded waves-effect">
-                            <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="clearfix d-sm-inline-block"> Cart </span>
+{#                            <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>#}
+                            <i class="fas fa-table"></i>
+                            <span class="clearfix d-sm-inline-block"> Dashboard </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://github.com/mauricejulesm/ubumweGroup"
-                           class="nav-link waves-effect" target="_blank">
-                            <span class="clearfix d-sm-inline-block">Welcome, {{ request.user.username }}</span>
+                        <a href="#" class="nav-link waves-effect">
+{#                            <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>#}
+                            <i class="fas fa-users"></i>
+                            <span class="clearfix d-sm-inline-block"> Members </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/admin"
+                           class="nav-link border border-default rounded waves-effect" target="_blank">
+                            <span class="clearfix d-sm-inline-block">Welcome Admin, {{ request.user.username }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -157,7 +164,7 @@
     <!--Call to action-->
     <div class="pt-4">
         <a class="btn btn-outline-white" href="#"
-           target="_blank" role="button">Download our App
+           role="button">Download our App
             <i class="fas fa-download ml-2"></i>
         </a>
         {#      <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank"#}
@@ -171,25 +178,13 @@
 
     <!-- Social icons -->
     <div class="pb-4">
-{#        <a href="#" target="_blank">#}
-{#            <i class="fab fa-facebook-f mr-3"></i>#}
-{#        </a>#}
-{##}
-{#        <a href="#" target="_blank">#}
-{#            <i class="fab fa-twitter mr-3"></i>#}
-{#        </a>#}
-{##}
-{#        <a href="#" target="_blank">#}
-{#            <i class="fab fa-youtube mr-3"></i>#}
-{#        </a>#}
-{##}
-{#        <a href="#" target="_blank">#}
-{#            <i class="fab fa-google-plus-g mr-3"></i>#}
-{#        </a>#}
-{##}
-{#        <a href="#" target="_blank">#}
-{#            <i class="fab fa-dribbble mr-3"></i>#}
-{#        </a>#}
+        <a href="#" target="_blank">
+            <i class="fab fa-facebook-f mr-3"></i>
+        </a>
+
+        <a href="#" target="_blank">
+            <i class="fab fa-twitter mr-3"></i>
+        </a>
 
         <a href="https://www.linkedin.com/in/julesmauricemulisa/" target="_blank">
             <i class="fab fa-linkedin mr-3"></i>
@@ -198,10 +193,6 @@
         <a href="https://github.com/mauricejulesm/ubumweGroup" target="_blank">
             <i class="fab fa-github mr-3"></i>
         </a>
-{##}
-{#        <a href="#" target="_blank">#}
-{#            <i class="fab fa-codepen mr-3"></i>#}
-{#        </a>#}
     </div>
     <!-- Social icons -->
 
