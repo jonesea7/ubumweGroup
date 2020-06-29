@@ -15,9 +15,14 @@ class HomeView(ListView):
     template_name = 'home.html'
 
 
+class MembersListView(ListView):
+    model = Member
+    template_name = 'members_view.html'
+
+
 class MemberDetailView(LoginRequiredMixin, DetailView):
     model = Member
-    template_name = 'member.html'
+    template_name = 'member_details.html'
 
 
 class ContributionsDashboardView(LoginRequiredMixin, View):

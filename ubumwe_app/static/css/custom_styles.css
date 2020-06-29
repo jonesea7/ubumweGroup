@@ -1,0 +1,37 @@
+.cascading-admin-card .admin-up .fab, .cascading-admin-card .admin-up .far, .cascading-admin-card .admin-up .fas {
+    padding: 1.7rem;
+    font-size: 2rem;
+    color: #fff;
+    text-align: left;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.cascading-admin-card .admin-up .data p {
+    color: #999;
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.cascading-admin-card .admin-up .data {
+    float: right;
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.card {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    border: 0;
+    font-weight: 400;
+}
+
+.text-uppercase {
+    text-transform: uppercase!important;
+}
+
+.cascading-admin-card .admin-up {
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: -1.25rem;
+}
