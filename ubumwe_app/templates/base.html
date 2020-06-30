@@ -69,7 +69,7 @@
     <div class="container">
 
         <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="{% url 'ubumwe_app:home' %}" >
+        <a class="navbar-brand waves-effect" href="{% url 'ubumwe_app:main' %}" >
             <strong class="blue-text">Ikimina Ubumwe</strong>
         </a>
 
@@ -86,7 +86,7 @@
             <ul class="navbar-nav ml-auto">
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="{% url 'ubumwe_app:home' %}" class="nav-link  waves-effect">
+                        <a href="{% url 'ubumwe_app:main' %}" class="nav-link  waves-effect">
 {#                            <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>#}
                             <i class="fas fa-home"></i>
                             <span class="clearfix d-sm-inline-block"> Home </span>

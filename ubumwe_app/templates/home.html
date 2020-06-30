@@ -181,7 +181,7 @@
                     <i class="fas fa-users default-color-dark mr-3 z-depth-2"></i>
                     <div class="data">
                       <p class="text-uppercase">Total Members</p>
-                      <h4 class="font-weight-bold dark-grey-text counter">22</h4>
+                      <h4 class="font-weight-bold dark-grey-text counter">{{ members_count_object }}</h4>
                     </div>
                   </div>
 
@@ -210,7 +210,7 @@
                     <i class="fas fa-money-bill-alt primary-color mr-3 z-depth-2"></i>
                     <div class="data">
                       <p class="text-uppercase">Total umusanzu</p>
-                      <h4 class="font-weight-bold dark-grey-text counter">1,250,000</h4>
+                      <h4 class="font-weight-bold dark-grey-text counter">{{ contribution_object }}</h4>
                     </div>
                   </div>
 
@@ -371,67 +371,6 @@
 
         </div>
         <!--Grid row-->
-
-
-      <!--Section: Products v.3-->
-      <section class="text-center mb-4">
-
-        <!--Grid row-->
-        <div class="row wow fadeIn">
-
-{#            {% for member in object_list %}#}
-{#                <div class="col-lg-3 col-md-6 mb-4">#}
-{##}
-{#            <!--Card-->#}
-{#            <div class="card">#}
-{##}
-{#              <!--Card image-->#}
-{#              <div class="view overlay">#}
-{#                <img  src="{{ member.member_image.url }}" class="card-img-top"#}
-{#                  alt="">#}
-{#                <a href="{{ member.get_absolute_url }}">#}
-{#                  <div class="mask rgba-white-slight"></div>#}
-{#                </a>#}
-{##}
-{#              </div>#}
-{#              <!--Card image-->#}
-{##}
-{#              <!--Card content-->#}
-{#              <div class="card-body text-center">#}
-{#                <!--Category & Title-->#}
-{#                <h5>#}
-{#                    <strong>#}
-{#                        <a href="{{ member.get_absolute_url }}" class="dark-grey-text">{{ member.first_name }} {{ member.last_name }}#}
-                            {# <span class="badge badge-pill {{ member.get_label_display }}-color">NEW</span>#}
-{#                        </a>#}
-{#                        <span class="badge badge-pill primary-color">{{ member.inshuro }}</span>#}
-{#                    </strong>#}
-{#                </h5>#}
-{#                  <a href="" class="grey-text">#}
-{#                      <h5>{{ member.get_category_display }}</h5>#}
-{#                  </a>#}
-{##}
-{#                <h4 >#}
-{#                    <p class="lead">#}
-{#                        <span class="font-weight-bold blue-text ">Saved: {{ member.get_total_saved }}</span>#}
-{#                    </p>#}
-{#                </h4>#}
-{##}
-{#              </div>#}
-{#              <!--Card content-->#}
-{##}
-{#            </div>#}
-{#            <!--Card-->#}
-{##}
-{#          </div>#}
-{#            {% endfor %}#}
-
-        </div>
-        <!--Grid row-->
-
-      </section>
-
-
     </div>
   </main>
   <!--Main layout-->

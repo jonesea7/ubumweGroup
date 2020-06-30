@@ -10,9 +10,35 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 
 
-class HomeView(ListView):
+class HomeView(LoginRequiredMixin, ListView):
     model = Member
     template_name = 'home.html'
+
+    def get(self, *args, **kwargs):
+        return redirect('/main')
+
+
+class MainView(LoginRequiredMixin, View):
+
+    def get(self, *args, **kwargs):
+        total_contributions = 0
+        try:
+            members = Member.objects.all()
+
+            for member in members:
+                total_contributions += member.get_total_saved()
+
+            # contributions = Contribution.objects.all()
+            context = {
+                'members_object': members,
+                'members_count_object': members.count(),
+                'contribution_object': f'{total_contributions:,}',
+            }
+            # print("****** total cont of members: ", members.count())
+            return render(self.request, 'home.html', context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "No members in this Kimina yet, please add members and try again.")
+            return redirect('/main')
 
 
 class MembersListView(ListView):
@@ -38,13 +64,13 @@ class ContributionsDashboardView(LoginRequiredMixin, View):
             # contributions = Contribution.objects.all()
             context = {
                 'members_object': members,
-                'contribution_object': total_contributions,
+                'contribution_object': f'{total_contributions:,}',
             }
-            print("****** total cont: ", total_contributions)
+            # print("****** total cont: ", total_contributions)
             return render(self.request, 'contributions_dashboard.html', context)
         except ObjectDoesNotExist:
             messages.error(self.request, "No members in this Kimina yet, please add members and try again.")
-            return redirect('/')
+            return redirect('/main')
 
 
 #
