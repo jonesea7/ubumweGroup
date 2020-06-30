@@ -29,12 +29,11 @@ class Contribution(models.Model):
     def __str__(self):
         return f"Yo kuri {self.date_contributed}"
 
-# nguzanyo {{ member.first_name }} yafashe                   <td>{{ contribution.asigayemo}} Frw</td>
 
 class Loan(models.Model):
     amount = models.IntegerField()
     date_borrowed = models.DateTimeField()
-    abishingizi = models.ManyToManyField("Member")
+    abishingizi = models.ManyToManyField("Member", blank=True)
     yarishyuwe = models.BooleanField(default=False)
 
     def __str__(self):
@@ -48,8 +47,8 @@ class Member(models.Model):
     phone = PhoneNumberField(default='+12125552368')
     inshuro = models.IntegerField(default=1)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2, default='MB')
-    contributions = models.ManyToManyField(Contribution)
-    loans = models.ManyToManyField(Loan)
+    contributions = models.ManyToManyField(Contribution, blank=True)
+    loans = models.ManyToManyField(Loan, blank=True)
     member_image = models.ImageField(blank=True, default='default.png')
     slug = models.SlugField(unique=True, blank=True)
 
