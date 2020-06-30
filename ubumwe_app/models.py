@@ -23,10 +23,22 @@ LABEL_CHOICES = (
 
 class Contribution(models.Model):
     amount = models.IntegerField()
+    asigayemo = models.IntegerField(blank=True, default=0)
     date_contributed = models.DateTimeField()
 
     def __str__(self):
         return f"Yo kuri {self.date_contributed}"
+
+# nguzanyo {{ member.first_name }} yafashe                   <td>{{ contribution.asigayemo}} Frw</td>
+
+class Loan(models.Model):
+    amount = models.IntegerField()
+    date_borrowed = models.DateTimeField()
+    abishingizi = models.ManyToManyField("Member")
+    yarishyuwe = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Inguzanyo yo kuri {self.date_borrowed}"
 
 
 class Member(models.Model):
@@ -37,18 +49,12 @@ class Member(models.Model):
     inshuro = models.IntegerField(default=1)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2, default='MB')
     contributions = models.ManyToManyField(Contribution)
-    # loans = models.ManyToManyField(Loan)
+    loans = models.ManyToManyField(Loan)
     member_image = models.ImageField(blank=True, default='default.png')
     slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
         return self.first_name
-
-    def get_total_saved(self):
-        total = 0
-        for contrib in self.contributions.all():
-            total += contrib.amount
-        return total
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
@@ -62,19 +68,17 @@ class Member(models.Model):
         self.slug = slugify(self.first_name)
         super(Member, self).save(*args, **kwargs)
 
-    # def get_total_borrowed(self):
-    #     total = 0
-    #     for loan in self.loans.all():
-    #         total += loan.amount
-    #     return total
+    def get_total_saved(self):
+        total = 0
+        for contrib in self.contributions.all():
+            total += contrib.amount
+        return total
 
-
-# class Loan(models.Model):
-#     amount = models.IntegerField()
-#     date_borrowed = models.DateTimeField()
-#
-#     def __str__(self):
-#         return f"Umusanzu wo kuri {self.date_borrowed}"
+    def get_total_borrowed(self):
+        total = 0
+        for loan in self.loans.all():
+            total += loan.amount
+        return total
 
 
 #

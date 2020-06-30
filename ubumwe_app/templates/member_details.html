@@ -63,26 +63,29 @@
 
       <hr>
 
-      <!--Grid row-->
-      <div class="row d-flex justify-content-center wow fadeIn">
-
-        <!--Grid column-->
-        <div class="col-md-6 text-center">
-
-          <h4 class="my-4 h4">More about the member {{ member.first_name }} </h4>
-
-          <p>Amakuru arambuye kuri {{ member.first_name }}. More content coming soon...</p>
-
-        </div>
-        <!--Grid column-->
-
-      </div>
-      <!--Grid row-->
+    </div>
+  </main>
 
 
 
     <!--Main layout-->
   <main>
+  <!--Grid row - Contributions -->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-8 text-center">
+
+          <h4 class="my-4 h4">More about the member {{ member.first_name }} </h4>
+
+            <h5 class="blue-text">Contributions <span class="font-weight-bold"> {{ member.first_name }} </span> aherutse gukora</h5>
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row - Contributions -->
+
     <div class="container">
 
         <div class="table-responsive text-nowrap">
@@ -126,18 +129,77 @@
                 </tr>
             </tbody>
           </table>
-
-</div>
-
+        </div>
     </div>
+
+
+
+
+
+  <!--Grid row - Loans -->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-8 text-center">
+
+            <h5 class="red-text">Inguzanyo <span class="font-weight-bold"> {{ member.first_name }} </span> yafashe</h5>
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row - Contributions -->
+
+    <div class="container">
+
+        <div class="table-responsive text-nowrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Loan date</th>
+                <th scope="col">Amount borrowed</th>
+                <th scope="col">Abayishingiye</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for loan in member.loans.all  %}
+
+              <tr>
+                  <td scope="row">{{ forloop.counter }}</td>
+                  <td>{{ loan.date_borrowed }}</td>
+                  <td>{{ loan.amount }} Frw</td>
+                  <td> <span class="badge badge-pill badge-dark">Vincent</span>
+                      <span class="badge badge-pill badge-dark">Deo</span>
+                      <span class="badge badge-pill badge-dark">others</span></td>
+              </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">You cart is empty!</td>
+                </tr>
+
+            {% endfor %}
+                <tr>
+                    <td colspan="3" ><b>Total ya {{ member.first_name }}</b></td>
+                    {% if member.get_total_saved %}
+                        <td class="btn-warning"> <b>{{ member.get_total_borrowed }} Frw</b> </td>
+                    {% else %}
+                        <td class="btn-primary"> <b>0 Frw</b> </td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td colspan="5">
+{#                        <a href="#" class="btn btn-primary float-right ml-2">Print this table</a>#}
+{#                        <a href="{% url 'ubumwe_app:checkout' %}" class="btn btn-warning float-right">Proceed to checkout</a>#}
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
   </main>
   <!--Main layout-->
 
-
-
-
-    </div>
-  </main>
-  <!--Main layout-->
 
  {% endblock %}
