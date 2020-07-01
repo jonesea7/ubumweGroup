@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block head_title %}{% trans "Member" %}{% endblock %}
 {% block content %}
@@ -13,7 +14,7 @@
         <!--Grid column-->
         <div class="col-md-4 mb-4">
 
-          <img style="border-radius: 50%" src="{{ member.member_image.url }}" class="img-fluid" alt="">
+          <img style="border-radius: 50%" src="{% static 'img/members_profiles/' %}{{ member.slug }}.jpg" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
