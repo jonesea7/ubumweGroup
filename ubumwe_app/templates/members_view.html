@@ -40,7 +40,7 @@
 
               <!--Card image-->
               <div class="view overlay">
-                <img  src="{{ member.member_image.url }}" class="card-img-top"
+                <img  src="{% static 'img/members_profiles/' %}{{ member.slug }}.jpg" class="card-img-top"
                   alt="">
                 <a href="{{ member.get_absolute_url }}">
                   <div class="mask rgba-white-slight"></div>
