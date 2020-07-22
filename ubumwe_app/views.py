@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 
 
-class HomeView(LoginRequiredMixin, ListView):
+class HomeView(ListView):
     model = Member
     template_name = 'home.html'
 
@@ -18,7 +18,7 @@ class HomeView(LoginRequiredMixin, ListView):
         return redirect('/main')
 
 
-class MainView(LoginRequiredMixin, View):
+class MainView(View):
 
     def get(self, *args, **kwargs):
         total_contributions = 0
@@ -46,12 +46,12 @@ class MembersListView(ListView):
     template_name = 'members_view.html'
 
 
-class MemberDetailView(LoginRequiredMixin, DetailView):
+class MemberDetailView(DetailView):
     model = Member
     template_name = 'member_details.html'
 
 
-class ContributionsDashboardView(LoginRequiredMixin, View):
+class ContributionsDashboardView(View):
 
     def get(self, *args, **kwargs):
         total_contributions = 0
